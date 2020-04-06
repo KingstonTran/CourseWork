@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HaroldSpin</string>
+    <string name="spinString">SPIN</string>
+    <string name="spinsLabel">Spins: </string>
+    <string name="winningsLabel">Winnings: $</string>
+    <string name="newGame">NEW GAME</string>
+    <string name="stopString">STOP</string>
+    <string name="initial">Spins: 0 Winnings: $0</string>
+</resources>

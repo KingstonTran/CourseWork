@@ -1,0 +1,39 @@
+import heapq
+inputA = input().split()
+numLines = int(inputA[0])
+pot = int(inputA[1])
+score = [0] * (numLines)
+dict1 = {}
+dictList = [0] * numLines
+for i in range(0, pot):
+
+    inputA = input().split()
+    locA = int(inputA[0])
+    locB = int(inputA[1])
+    cost = int(inputA[2])
+    if locA not in dict1:
+        dict1[locA] = [[cost, locB, locA]]
+    else:
+        dict1[locA].append([cost, locB, locA])
+
+    if locB not in dict1:
+        dict1[locB] = [[cost, locA, locB]]
+    else:
+        dict1[locB].append([cost, locA, locB])
+count = 0
+visited = [0]
+index = 0
+startIndex = 0
+toVisit = dict1[index]
+heapq.heapify(toVisit)
+while toVisit:
+    if len(visited) == numLines:
+        break
+    current = heapq.heappop(toVisit)
+    if current[1] not in visited:
+        visited.append(current[1])
+        count += current[0]
+        for items in dict1[current[1]]:
+            if items[1] not in visited:
+                heapq.heappush(toVisit, items)
+print(count)

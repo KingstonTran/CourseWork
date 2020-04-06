@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Project 3</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="refresh">Refresh</string>
+    <string name="song_title">Song Title</string>
+    <string name="author">Author</string>
+    <string name="Register">Register User</string>
+    <string name="userLabelString">Username</string>
+    <string name="PasswordEnter">Enter Password</string>
+    <string name="confirmpass">Confirm Password</string>
+    <string name="RepeatPassword">Confirm Password</string>
+    <string name="Cancel">Cancel</string>
+    <string name="NameEnter">Enter Username</string>
+    <string name="passwordLabelString">Password</string>
+    <string name="loginButtonString">Login</string>
+    <string name="CreateUser">Create User</string>
+    <string name="registerEmpty">You need a username and password to login!</string>
+</resources>

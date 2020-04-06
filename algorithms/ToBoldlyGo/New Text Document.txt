@@ -1,0 +1,41 @@
+To Boldly Go:
+
+
+Oganesson is now building huge star ships capable of multi-year long missions. These ships need to have a large crew where there are many skills represented. Can you help them determine who should go?
+
+But wait! Haven't you already solved this problem? Technically, you have, but now the crews are much larger and your old algorithm is too slow. In fact, any classical algorithm is going to be too slow to find a perfect answer. As such, you just need to find the best answer that you can -- and print out the full answer.
+
+For this problem, you will be graded on how close your answer comes to the correct answer. For every test case, you MUST return AN answer (i.e., timing out will result in no points for the given test case); the quality of your answer will determine how much credit you receive on the test case.
+
+Input Format
+
+The first line has two values, N and K.
+N represents the number of potential crew members available (numbered 0 through N - 1), and K is the number of distinct skills that need to be included (numbered 0 through K - 1).
+The next N pairs of lines each provide information about a single person.
+The first line for person i indicates the number of skills that person has (Pi), and the second line has Pi values indicating the specific skill IDs.
+Constraints
+
+N == 1000
+500 ≤ K ≤ 1200
+8 ≤ Pi ≤ 200
+Output Format
+
+You should output two lines. The first line indicates S, the size of the best solution you could find (the minimum number of people). The next line has S space-separated values indicating the specific IDs of the people to recruit onto the team.
+
+Example 0
+Sample Input
+
+3 5
+2
+1 3
+3
+0 1 2
+3
+0 2 4
+Sample Output
+
+2
+0 2
+Explanation
+
+There are three people to choose from in the example input, and five total skills. These people are then presented in order. Person 0 has 2 skills: 1 and 3. Person 1 has 3 skills: 0, 1, and 2. Person 2 also has 3 skills: 0, 2, and 4.

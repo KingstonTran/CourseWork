@@ -1,0 +1,122 @@
+#include <iostream>
+#include <vector>
+#include <bitset> 
+#include<algorithm> 
+#include <chrono>
+#include <time.h>
+using namespace std;
+using namespace std::chrono;
+//http://www.cplusplus.com/reference/ctime/clock/
+int bestAnswerCount = 1001;
+pair<int, bitset<1200>> temp;
+vector<pair<int, bitset<1200>>> subsets(vector<pair<int, bitset<1200>>> undecided, bitset<1200> required){
+    
+    pair<int,bitset<1200>> tempPair;
+    int subsetSize = undecided.size();
+    int count = 0;
+    bitset<1200> total;
+    while (count < subsetSize){
+        
+        tempPair = undecided.back();
+        undecided.pop_back();
+        for (auto i: undecided){
+            total |= i.second;
+            if (total == required){
+                break;
+            }
+        }
+        if(total != required){
+            undecided.insert(undecided.begin(), tempPair);
+        }
+        total.reset();
+        count++;
+    }
+    return undecided;
+}
+vector<pair<int, bitset<1200>>> solve(vector<pair<int, bitset<1200>>> undecided, vector<pair<int, bitset<1200>>> included, bitset<1200>required, bitset<1200> skills ){
+    while(undecided.size() > 0){
+        if (included.size() >= bestAnswerCount){
+            return included;
+        }
+        int bestIndex = 0;
+        int bestCount = 0;
+        for (int i =0;i < undecided.size(); ++i){
+            int trial = (undecided[i].second | skills).count();
+            if (trial >= bestCount){
+                bestCount = trial;
+                bestIndex = i;
+            }
+        }
+        undecided.push_back(undecided[bestIndex]);
+            
+        undecided.erase(undecided.begin() + bestIndex);
+        
+        
+        temp = undecided.back();
+        undecided.pop_back();
+        if ((temp.second | skills).count() > skills.count()){
+            included.push_back(temp);
+            skills |= temp.second;
+        }
+        if (skills == required){
+            return included;
+        }
+    }
+    return included;
+}
+int main(){
+    steady_clock::time_point clock_begin = steady_clock::now();
+    steady_clock::duration time_span;
+    double nseconds;
+
+    int N, K, P, Pi;
+    bitset<1200> requiredSkills, currentSkill;
+    vector<pair<int, bitset<1200>>> people, included;
+    cin >> N >> K;
+    for (int i = 0 ; i < K; ++i) {
+        requiredSkills[i] = 1;
+    }
+    pair<int, bitset<1200>> person;
+    for (int i = 0; i < N; ++i){
+        cin >> P;
+        bitset<1200> skill;
+        for (int x = 0; x < P; ++x){
+            cin >> Pi;
+            skill[Pi] = 1;
+        }
+        person = make_pair(i, skill);
+        people.push_back(person);
+    }
+    sort(people.begin(), people.end(),
+    [](const pair<int, bitset<1200>> & a, const pair<int, bitset<1200>> & b) -> bool
+{ 
+    return a.second.count() < b.second.count(); 
+});
+    
+    vector<pair<int, bitset<1200>>> answer,bestAnswer; 
+    int i = 0;
+    for (i; i < people.size(); ++i){
+        answer = solve(people, included, requiredSkills, currentSkill);
+        answer = subsets(answer, requiredSkills);
+        people.insert(people.begin(), people.back());
+        people.pop_back();
+        if (answer.size() < bestAnswerCount){
+            bestAnswer = answer;
+            bestAnswerCount = answer.size();
+        }
+        
+        steady_clock::time_point clock_end = steady_clock::now();
+        time_span = clock_end - clock_begin;
+        nseconds = double(time_span.count()) * steady_clock::period::num / steady_clock::period::den;
+        if (nseconds >= 3.932){
+            break;
+        }
+        
+        
+    }
+    cout << bestAnswer.size() << endl;
+    for (auto i: bestAnswer){
+        cout << i.first << " ";
+    }
+    return 0;
+}

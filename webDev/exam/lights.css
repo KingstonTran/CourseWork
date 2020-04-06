@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+body {
+    background-color: #18453B;
+    margin-top: 0.5em;
+}
+
+form {
+    width: 600px;
+    margin: 0 auto 0 auto;
+    background-color: beige;
+}
+
+form p {
+    text-align: center;
+    font-size: 1.25em;
+}
+
+form input[type="submit"] {
+    font-size: 1.25em;
+    width: 10em;
+}
+
+form button {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+}
+
+table {
+	border: 2px solid black;
+	border-collapse: collapse;
+	margin: 0 auto 0 auto;
+}
+
+td {
+	position: relative;
+	border: thin solid black;
+	padding: 0;
+	margin: 0;
+	text-align: center;
+	height: 1.5em;
+	width: 1.5em;
+	font-size: 2em;
+}
+
+button {
+	font-size: 1em;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+
+td.light img {
+	height: 1.3em;
+	width: auto;
+	vertical-align: middle;
+
+}
+
+.wall {
+	background-color: black;
+	color: white;
+}
+
+.wrong {
+	background-color: #FD6C6E;
+}
+
+.wrong button {
+	color: black;
+}
+
